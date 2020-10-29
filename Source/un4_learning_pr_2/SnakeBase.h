@@ -7,6 +7,7 @@
 #include "SnakeBase.generated.h"
 
 class ASnakeElementBase;
+class AFood;
 
 UENUM()
 enum class EMovementDirection
@@ -41,6 +42,7 @@ public:
     UPROPERTY(EditDefaultsOnly)
     float MovementSpeed;
     
+    
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -50,9 +52,11 @@ public:
 	virtual void Tick(float DeltaTime) override;
     
     void AddSnakeElement(int ElementsNum = 1);
+    void RemoveSnakeElement();
     
     void Move();
     
-   
+    UFUNCTION()
+    void SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActor* Other);
 
 };
